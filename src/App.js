@@ -37,7 +37,13 @@ function App() {
   }
 
   return (
-    <div className="app">
+    // if weather is over 80, display warm picture
+    <div className={
+      (typeof weather.main != "undefined") 
+        ? ((weather.main.temp > 80)
+        ? 'app warm'
+        : 'app')
+        : 'app'}>
       <main>
         <div className="search-box">
           <input 
@@ -57,9 +63,9 @@ function App() {
           </div>
           <div className="weather-box">
             <div className="temp">
-              15 C
+              {Math.round(weather.main.temp)}°F
             </div>
-            <div className="weather">Sunny</div>
+            <div className="weather">{weather.weather[0].main}</div>
           </div>
         </div>
 
